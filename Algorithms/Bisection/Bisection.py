@@ -4,7 +4,7 @@ def bisection_method(f, a, b, tol, max_iterations):
 
     if f(a) * f(b) >= 0:
         print("f(a) and f(b) must have opposite signs.")
-        return None
+        return None, i
 
     i = 1
     fa = f(a)
@@ -16,7 +16,7 @@ def bisection_method(f, a, b, tol, max_iterations):
 
         # check the stopping criteria
         if fp == 0 or (b - a) / 2 < tol:
-            return p
+            return p, i
         
         i += 1
 
@@ -27,7 +27,12 @@ def bisection_method(f, a, b, tol, max_iterations):
         else:
             b = p
     print(f"Method failed after {max_iterations} iterations.")
-    return None
+    return None, max_iterations
 
-def func(x):
-    pass
+def f(x):
+    return
+
+root, iterations = bisection_method()
+
+print("Approximation: ", root)
+print("Total iterations: ", iterations)
