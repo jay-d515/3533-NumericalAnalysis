@@ -18,11 +18,11 @@ def newtons_method(func, func_prime, p0, tol, max_iterations):
     return None, max_iterations
 
 def f(x):
-    return x**2 - 2*x*math.exp(-x) + math.exp(-2*x)
+    return math.cos(x + math.sqrt(2)) + x*((x / 2) + math.sqrt(2))
 def fprime(x):
-    return 2*x + 2*x*math.exp(-x) - 2*math.exp(-x) - 2*math.exp(-2*x)
+    return -(math.sin(x + math.sqrt(2))) + x + math.sqrt(2)
 
-root, iterations = newtons_method(f, fprime, 0.5, 1e-5, 50)
+root, iterations = newtons_method(f, fprime, -1.5, 1e-5, 50)
 
 print("Approximation: ", root)
 print("Total iterations: ", iterations)
