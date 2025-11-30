@@ -49,6 +49,31 @@ def neville(x_data, y_data, x):
             
     return Q[0][n - 1]
 
+def evaluate_column(x_data, y_data):
+    """
+    Evaluates a column of data at 6 interpolation points
+    using both Newton and Neville methods.
+    """
+
+    eval_points = [0.25, 0.75, 1.25, 1.75, 2.25, 2.75]
+
+    coef = newton_divided_differences(x_data, y_data)
+
+    results = []
+
+    # Evaluate each point
+    for x in eval_points:
+        newton_val = newton_evaluate(x_data, coef, x)
+        neville_val = neville(x_data, y_data, x)
+
+        results.append({
+            "x": x,
+            "Newton": newton_val,
+            "Neville": neville_val
+        })
+
+    return results
+
 
 # Load the data
 x = np.array([0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3.0])
@@ -62,30 +87,15 @@ f3 = np.array([0.75, 0.315, 0.06, -0.015, 0.09, 0.375,
 f4 = np.array([0.858, -1.026, -1.344, -0.8736, -0.198,
                0.294, 0.408, 0.144, -0.3036, -0.546, 0])
 
-eval_point = 1
+results_f1 = evaluate_column(x, f1)
+results_f3 = evaluate_column(x, f3)
+results_f4 = evaluate_column(x, f4)
 
-# Evalution for column f1
-coef_f1 = newton_divided_differences(x, f1)
-p_f1 = newton_evaluate(x, coef_f1, eval_point)
-print("Newton f1(", eval_point, ") =", p_f1)
+for row in results_f1:
+    print(f"x = {row['x']}  Newton = {row['Newton']:.6f}  Neville = {row['Neville']:.6f} \n")
 
-p_f1_nev = neville(x, f1, eval_point)
-print("Neville f1(", eval_point, ") =", p_f1_nev)
+for row in results_f3:
+    print(f"x = {row['x']}  Newton = {row['Newton']:.6f}  Neville = {row['Neville']:.6f} \n")
 
-
-# Evalution for column f3
-coef_f3 = newton_divided_differences(x, f3)
-p_f3 = newton_evaluate(x, coef_f1, eval_point)
-print("Newton f3(", eval_point, ") =", p_f3)
-
-p_f3_nev = neville(x, f3, eval_point)
-print("Neville f3(", eval_point, ") =", p_f3_nev)
-
-
-# Evalution for column f4
-coef_f4 = newton_divided_differences(x, f4)
-p_f4 = newton_evaluate(x, coef_f4, eval_point)
-print("Newton f4(", eval_point, ") =", p_f4)
-
-p_f4_nev = neville(x, f4, eval_point)
-print("Neville f4(", eval_point, ") =", p_f4_nev)
+for row in results_f4:
+    print(f"x = {row['x']}  Newton = {row['Newton']:.6f}  Neville = {row['Neville']:.6f}")
