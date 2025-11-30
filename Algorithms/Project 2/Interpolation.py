@@ -91,11 +91,16 @@ results_f1 = evaluate_column(x, f1)
 results_f3 = evaluate_column(x, f3)
 results_f4 = evaluate_column(x, f4)
 
-for row in results_f1:
-    print(f"x = {row['x']}  Newton = {row['Newton']:.6f}  Neville = {row['Neville']:.6f} \n")
+print ("Results of f1(x):\n")
+for row in results_f1: 
+    print(f"x = {row['x']}  Newton = {row['Newton']:.6f}  Neville = {row['Neville']:.6f}")
+print("\n\n")
 
-for row in results_f3:
-    print(f"x = {row['x']}  Newton = {row['Newton']:.6f}  Neville = {row['Neville']:.6f} \n")
+print ("Results of f3(x):\n")
+for row in results_f3:   
+    print(f"x = {row['x']}  Newton = {row['Newton']:.6f}  Neville = {row['Neville']:.6f}")
+print("\n\n")
 
-for row in results_f4:
+print ("Results of f4(x):\n")
+for row in results_f4:   
     print(f"x = {row['x']}  Newton = {row['Newton']:.6f}  Neville = {row['Neville']:.6f}")
